@@ -210,8 +210,8 @@ let toastTimer;
 function showToast(message, type = 'success') {
   clearTimeout(toastTimer);
   toast.textContent = message;
-  toast.style.borderLeftColor = type === 'error' ? '#ef4444' : 'var(--primary)';
-  toast.style.borderColor     = type === 'error' ? '#ef4444' : 'var(--primary)';
+  toast.style.borderLeftColor = type === 'error' ? '#ef4444' : 'var(--green)';
+  toast.style.borderColor     = type === 'error' ? '#ef4444' : 'var(--green)';
   toast.classList.add('show');
   toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
 }
