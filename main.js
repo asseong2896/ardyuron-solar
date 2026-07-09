@@ -193,14 +193,48 @@ lightbox.addEventListener('touchend',   (e) => {
 
 // ===== CONTACT FORM =====
 const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', (e) => {
+const WEB3FORMS_ACCESS_KEY = '99cea469-9c6a-42c4-902b-66e37204164e';
+
+contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const name = document.getElementById('fname').value.trim();
   if (!name) { showToast('Please enter your full name.', 'error'); return; }
   const phone = document.getElementById('phone').value.trim();
   if (!phone) { showToast('Please enter your phone number.', 'error'); return; }
-  showToast(`✅ Thanks, ${name}! We'll contact you shortly.`);
-  contactForm.reset();
+  const email   = document.getElementById('email').value.trim();
+  const service = document.getElementById('service').value;
+  const message = document.getElementById('message').value.trim();
+
+  const submitBtn     = contactForm.querySelector('button[type="submit"]');
+  const submitBtnHTML = submitBtn.innerHTML;
+  submitBtn.disabled  = true;
+  submitBtn.innerHTML = '<span>Sending...</span>';
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: `New quote request from ${name} — Ardyuron Solar website`,
+        from_name: 'Ardyuron Solar Website',
+        name,
+        phone,
+        email: email || 'Not provided',
+        service_interested_in: service || 'Not specified',
+        message: message || '(no message provided)',
+      }),
+    });
+    const result = await res.json();
+    if (!result.success) throw new Error(result.message || 'Submission failed');
+    showToast(`✅ Thanks, ${name}! We'll contact you shortly.`);
+    contactForm.reset();
+  } catch (err) {
+    showToast('❌ Something went wrong. Please call or message us directly.', 'error');
+  } finally {
+    submitBtn.disabled  = false;
+    submitBtn.innerHTML = submitBtnHTML;
+  }
 });
 
 // ===== TOAST =====
