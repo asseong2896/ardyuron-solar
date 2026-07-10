@@ -225,6 +225,16 @@ p { color: var(--muted); }
   width: 100%;
   height: auto;
 }
+.rebrand-notice {
+  margin: 0;
+  padding: 10px 24px;
+  background: var(--dark-2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-align: center;
+}
+.rebrand-notice strong { color: var(--primary); }
 
 /* ===== HERO ===== */
 .hero {
