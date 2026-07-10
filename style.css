@@ -212,15 +212,29 @@ p { color: var(--muted); }
 .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
+/* ===== PROMO BANNER ===== */
+.promo-banner {
+  display: block;
+  margin-top: 84px; /* clears the fixed navbar */
+  line-height: 0;
+  transition: var(--ease);
+}
+.promo-banner:hover { filter: brightness(1.04); }
+.promo-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* ===== HERO ===== */
 .hero {
-  min-height: 100vh;
+  min-height: 62vh; /* promo banner now carries the top-of-page impact */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding: 130px 24px 100px;
+  padding: 70px 24px 90px;
 }
 .hero-bg {
   position: absolute;
