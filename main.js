@@ -193,7 +193,7 @@ lightbox.addEventListener('touchend',   (e) => {
 
 // ===== CONTACT FORM =====
 const contactForm = document.getElementById('contactForm');
-const WEB3FORMS_ACCESS_KEY = '99cea469-9c6a-42c4-902b-66e37204164e';
+const WEB3FORMS_ACCESS_KEY = '29bede43-325a-4812-a045-0858a5d91f33';
 
 contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
